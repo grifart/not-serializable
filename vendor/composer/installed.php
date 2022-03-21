@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => NULL,
+        'name' => 'grifart/not-serializable',
+        'dev' => true,
+    ),
+    'versions' => array(
+        'grifart/not-serializable' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => NULL,
+            'dev_requirement' => false,
+        ),
+        'nette/tester' => array(
+            'pretty_version' => 'v2.4.1',
+            'version' => '2.4.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../nette/tester',
+            'aliases' => array(),
+            'reference' => 'b54326b3c1a2c6c76d2662a06b5ad5a10d822e98',
+            'dev_requirement' => true,
+        ),
+        'phpstan/phpstan' => array(
+            'pretty_version' => '1.4.10',
+            'version' => '1.4.10.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpstan/phpstan',
+            'aliases' => array(),
+            'reference' => '898c479c39caa727bedf4311dd294a8f4e250e72',
+            'dev_requirement' => true,
+        ),
+    ),
+);

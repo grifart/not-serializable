@@ -1,0 +1,28 @@
+{
+    "name": "grifart/not-serializable",
+    "description": "Let everyone know, that this class has not been meant for serialization.",
+    "type": "library",
+    "scripts": {
+        "test": "tester tests",
+        "phpstan": "phpstan analyze -l 9 src tests"
+    },
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "nette/tester": "^2.4",
+        "phpstan/phpstan": "^1.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Grifart\\NotSerializable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jan Kuchař",
+            "email": "honza.kuchar@grifart.cz"
+        }
+    ]
+}
