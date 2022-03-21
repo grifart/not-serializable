@@ -1,0 +1,30 @@
+stages:
+  - test
+
+verify-7.4:
+  image: grifart/php7.4-with-all-modules-and-various-tools
+  stage: test
+  interruptible: true
+
+  script:
+    - composer install
+    - composer run verify
+
+verify-8.0:
+  image: grifart/php8.0-with-all-modules-and-various-tools
+  stage: test
+  interruptible: true
+
+  script:
+    - composer install
+    - composer run verify
+
+
+verify-8.1:
+  image: grifart/php8.1-with-all-modules-and-various-tools
+  stage: test
+  interruptible: true
+
+  script:
+    - composer install
+    - composer run verify
