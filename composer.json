@@ -1,6 +1,6 @@
 {
     "name": "grifart/not-serializable",
-    "description": "Let everyone know, that this class has not been meant for serialization.",
+    "description": "State explicitly that class has not been meant for serialization.",
     "type": "library",
     "scripts": {
         "verify": ["@test", "@phpstan"],
