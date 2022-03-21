@@ -1,9 +1,10 @@
-# Not serializable
+# Classes should not be serializable by default!
 
 As every object should be `final` as default. It should NOT be serializable as default.
-Unfortunately reality in PHP is different.
+Unfortunately in PHP every object is serializable, until you say otherwise.
 
 If you want to make your classes NOT-serializable, you must explicitly state that.
+This package makes this one-liner for you.
 
 # Usage
 
