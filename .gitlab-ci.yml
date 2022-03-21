@@ -2,7 +2,7 @@ stages:
   - test
 
 verify-7.4:
-  image: grifart/php7.4-with-all-modules-and-various-tools
+  image: grifart/php7.4-with-gulp-and-all-php-modules
   stage: test
   interruptible: true
 
