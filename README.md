@@ -9,7 +9,10 @@ You should not be able to inherit from object which was not explicitly designed 
 In 3/2022 I have found a similar pattern that breaks object-encapsulation. The feature is **implicit support for object serialization**. Let's say we have an object:
 
 ```php
-class UserId { public function __construct(private int $id) {} }
+class UserId { 
+   private int $id;
+   public function __construct(int $id) {$this->id = $id}
+}
 
 // later in an app
 $userId = new UserId(42);
@@ -19,27 +22,32 @@ $_SESSION['user_id'] = $userId;
 
 This will work. No warning, no errors, no problems. For now...
 
-Later in time you have decided to do internal change of `UserId` object – rename private property `$id` to `$identifier`.
+...
+
+After a year you have decided to do internal change of `UserId` object – rename private property `$id` to `$identifier`.
 
 ```diff
--class UserId { public function __construct(private int $id) {} }
-+class UserId { 
+class UserId { 
+-   private int $id;
 +   private int $identifier;
-+   public function __construct(int $id) {$this->identifier = $id}
-+}
+    public function __construct(int $id) {
+-        $this->id = $id
++        $this->identifier = $id
+    }
+} 
 ```
 
 There is no public change of behaviour. There is no way outer observer should be able to find any changes in object behaviour. Static analysis passes, tests passes. All good! You deploy your application.
 
-Boom! 🔥 Application hard crashed for every user that has been logged-in.
+Boom! 🔥 Application hard crashed for every user that has been logged-in on _session deserialization_. That is because implicit serialization made public interface from a private property.
 
-This magic behaviour is [an explosive mine 💥](https://en.wikipedia.org/wiki/Explosive_mine), that you cannot easily spot from the surface or even in code-review.
+This magic behaviour is [an explosive mine 💥](https://en.wikipedia.org/wiki/Explosive_mine), that you cannot easily spot from the surface or even in code-review. You have to inspect whole code life-cycle including code history.
 
 # The solution
 
-**Replace implicit serialization with the explicit one.**
+> 👉 **Replace implicit serialization with the explicit one.**
 
-## Disabling implicit serialization
+## 1. Disabling implicit serialization
 
 In PHP every object is serializable by default, until you say otherwise. So let's say otherwise.
 
@@ -65,7 +73,7 @@ composer require grifart/not-serializable
 It contains a [simple trait](src), that disables serialization support for _PHP >7.4_. That is because serialization API has been changed [php-watch](https://php.watch/versions/8.1/serializable-deprecated).
 
 
-## Making the serialization explicit
+## 2. Making the serialization explicit
 
 When you **need** serialization support, implement serialization API explicitly.
 
@@ -83,7 +91,10 @@ You can go this way by:
 
 ### b) Long term serialization
 
-[grifart/stateful](https://github.com/grifart/stateful): Strict versioning, field checking and class name routing. Designed for serialization that can be deserialized after years, even when codebase changes significantly and for maximal strictness, so it fails on you dev maching, not on production.
+[grifart/stateful](https://github.com/grifart/stateful): Provides strict versioning, field checking and FQN routing. Designed for:
+- serialization that can be deserialized after years (e.g. immutable event streams)
+- situation when codebase changes significantly
+- for maximal strictness, so it fails on you dev machine, not on production.
 
 You can go this way by:
 1. removing the trait
