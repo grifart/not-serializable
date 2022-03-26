@@ -2,7 +2,9 @@
 
 ...and this package makes it easier for you.
 
-# The storyv
+# A story
+
+In 3/2022 this has happened.
 
 ```php
 class UserId { 
@@ -39,7 +41,7 @@ Boom! 🔥 Application hard crashed for every user that has been logged-in on _s
 
 ### Summary
 
-Implicit serialization support is [an explosive mine 💥](https://en.wikipedia.org/wiki/Explosive_mine), that you cannot easily be spot from the surface or even in code-review. You have to inspect whole object life-cycle including code history. Almost impossible to spot.
+Implicit serialization support is [an explosive mine 💥](https://en.wikipedia.org/wiki/Explosive_mine), that you cannot easily spot from the surface or even in code-review. You have to inspect whole object life-cycle including code history. Almost impossible to spot.
 
 This is very similar to disabling inheritance support from object which was not explicitly designed to be extended – `final` by default. You can find good reasoning at [1](https://matthiasnoback.nl/2018/09/final-classes-by-default-why/), [2](http://whiley.org/2011/12/06/final-should-be-default-for-classes-in-java/).
 
