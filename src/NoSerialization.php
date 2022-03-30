@@ -8,7 +8,7 @@ namespace Grifart\NotSerializable;
  * Use this trait to state that class is NOT meant to be serializable.
  * API docs: https://php.watch/versions/8.1/serializable-deprecated
  */
-trait NotSerializable
+trait NoSerialization
 {
 
 	/**

@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 
 class SomeClass {
-	use \Grifart\NotSerializable\NotSerializable;
+	use \Grifart\NotSerializable\NoSerialization;
 }
 
 \Tester\Assert::exception(

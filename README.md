@@ -32,7 +32,7 @@ class UserId {
 -        $this->id = $id
 +        $this->identifier = $id
     }
-} 
+}
 ```
 
 There is no public change of behaviour. There is no way outer observer should be able to find any changes in object behaviour. Static analysis passes, tests passes. All good! You deploy your application.
@@ -62,7 +62,7 @@ Open you PhpStorm settings and then `Editor > File and Code Templates > Files > 
 
 ```php
 final class ${NAME} {
-	use \Grifart\NotSerializable\NotSerializable;
+	use \Grifart\NotSerializable\NoSerialization;
 }
 ```
 
